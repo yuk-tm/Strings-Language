@@ -8,17 +8,8 @@ typedef struct Variable {
     union {
         double number;
         char* string;
-        struct {
-            struct Variable** items;
-            int count;
-            int capacity;
-        } list;
     } value;
-    enum {
-        VAR_NUMBER,
-        VAR_STRING, 
-        VAR_LIST
-    } type;
+    enum { VAR_NUMBER, VAR_STRING } type;
     int is_shared;
 } Variable;
 
@@ -45,13 +36,8 @@ typedef struct {
     union {
         double number;
         char* string;
-        Variable* list;
     } value;
-    enum {
-        RESULT_NUMBER,
-        RESULT_STRING,
-        RESULT_LIST
-    } type;
+    enum { RESULT_NUMBER, RESULT_STRING } type;
 } EvalResult;
 
 Interpreter* interpreter_create();
